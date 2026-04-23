@@ -35,8 +35,8 @@ print("Directorio actual:", os.getcwd())
 
 
 # Cargamos los datos
-df_ventas = pd.read_csv("Ventas.csv")
-df_vendedores = pd.read_csv("Vendedores.csv")
+df_ventas = pd.read_csv("data/Ventas.csv")
+df_vendedores = pd.read_csv("data/Vendedores.csv")
 
 
 
@@ -145,8 +145,8 @@ df_sin_match = df_final[df_final["empresa_correcta"].isna()]
 
 # Guardamos los resultados en un CSV en la carpeta original
 # Especificamos el separador para evitar problemas de lectura
-df_final.to_csv("resultados_cruce.csv", index=False, sep=";")
-df_sin_match.to_csv("registros_sin_cruce.csv", index=False, sep=";")
+df_final.to_csv("output/resultados_cruce.csv", index=False, sep=";")
+df_sin_match.to_csv("output/registros_sin_cruce.csv", index=False, sep=";")
 
 
 
@@ -186,7 +186,7 @@ plt.xlabel("Monto Vendido")
 plt.ylabel("Empresa")
 plt.title("Monto Vendido por Empresa")
 plt.gca().invert_yaxis() # Invierte el orden de los valores de la gráfica
-plt.savefig("ventas_por_empresa.png", bbox_inches='tight')  # Guardar imagen y elimina espacios en blanco
+plt.savefig("output/ventas_por_empresa.png", bbox_inches='tight')  # Guardar imagen y elimina espacios en blanco
 plt.close()
 
 # Monto vendido por vendedor
@@ -196,7 +196,7 @@ plt.xlabel("Monto Vendido")
 plt.ylabel("Vendedor")
 plt.title("Monto Vendido por Vendedor")
 plt.gca().invert_yaxis() # Invierte el orden de los valores de la gráfica
-plt.savefig("ventas_por_vendedor.png", bbox_inches='tight')  # Guardar imagen y elimina espacios en blanco
+plt.savefig("output/ventas_por_vendedor.png", bbox_inches='tight')  # Guardar imagen y elimina espacios en blanco
 plt.close()
 
 
@@ -252,17 +252,17 @@ pdf.ln(10)
 
 # 8. Insertamos los gráficos en el PDF
 pdf.cell(200, 10, "Grafico: Monto Vendido por Empresa", ln=True, align="C")
-pdf.image("ventas_por_empresa.png", x=10, w=180)
+pdf.image("output/ventas_por_empresa.png", x=10, w=180)
 pdf.ln(10)
 
 pdf.cell(200, 10, "Grafico: Monto Vendido por Vendedor", ln=True, align="C")
-pdf.image("ventas_por_vendedor.png", x=10, w=180)
+pdf.image("output/ventas_por_vendedor.png", x=10, w=180)
 pdf.ln(10)
 
 
 
 # 9. Guardar PDF
-pdf.output("reporte_ventas.pdf") # Lo guarda con el nombre entregado
+pdf.output("output/reporte_ventas.pdf") # Lo guarda con el nombre entregado
 
 print("✅ PDF generado con éxito: reporte_ventas.pdf")
 
